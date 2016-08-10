@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>datemining</title>
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/count.css">
+  <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+</head>
+<body>
+
+<script>
+  console.log(<%= @age_hash %>);
+  console.log(<%= @sick %>)
+</script>
+
+  <a href="/">ホームへ戻る</a>
+  <br>
+  <p>医薬品名：：<%= @druginfo.name %></p>
+  <form class="" action="/search/<%= @druginfo.id %>" method="post">
+    <p>副作用名</p>
+    <input type="text" name="sideeffect" value="sideeffect">
+    <input type="submit" value="データ抽出">
+  </form>
+  <p>ーーーーーーーーーーーーーーーーー</p>
+  <span>副作用報告件数：<%= @number_of_report %></span><br>
+<span>総報告件数：<%= @total_report %></span><br>
+<span>男女比  男 <%= @men %>  :女 <%= @women %> ：不明　<%= @other %></span>
+<p>_______________________________________________________________________________</p>
+<p>有害事象名：件数：</p>　
+<!-- <%= @s_effect_hash %> -->
+<script type="text/javascript">
+  document.write(<%= @s_effect_hash %>);
+</script>
+<!--<p>_______________________________________________________________________________</p>-->
+<p>年齢：</p>
+<!-- <%= @age_hash %> -->
+<script type="text/javascript">
+  document.write(<%= @age_hash %>);
+</script>
+<p>_______________________________________________________________________________</p>
+<!--<p>用量：</p>　<%= @dose_hash %>-->
+<!--<p>_______________________________________________________________________________</p>-->
+<p>報告時期：</p>
+　<!-- <%= @time_hash %> -->
+<script type="text/javascript">
+  document.write(<%= @time_hash %>);
+</script>
+<p>_______________________________________________________________________________</p>
+<span>合計投与日数；サンプル数</span><br>
+<span>合計；</span><%= @sum_dose %> <span>:<%= @l %></span>
+<p>_______________________________________________________________________________</p>
+<!-- <%= @dosing_period %> -->
+<script type="text/javascript">
+  document.write(<%= @dosing_period %>);
+</script>
+<!--<p>副作用発生時期：　<%= %></p>-->
+<p>_______________________________________________________________________________</p>
+<p>身長：</p>
+　<!-- <%= @height_hash %> -->
+<script type="text/javascript">
+  document.write(<%= @height_hash %>);
+</script>
+<p>_______________________________________________________________________________</p>
+<p>体重：</p>
+　<!-- <%= @weight_hash %> -->
+<script type="text/javascript">
+  document.write(<%= @weight_hash %>)
+</script>
+<p>_______________________________________________________________________________</p>
+<br>
+<p>転機</p>
+　<!-- <%= @aftercure_hash %> -->
+<script type="text/javascript">
+  document.write(<%= @aftercure_hash %>);
+</script>
+<br>
+<p>_______________________________________________________________________________</p>
+<br>
+<p>原発疾患</p>
+　<!-- <%= @sick_hash %> -->
+<script type="text/javascript">
+  document.write(<%= @sick_hash %>);
+</script>
+<br>
+
+</body>
+</html>
