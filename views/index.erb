@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <title>Document</title>
+  <title>ホーム画面</title>
   <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="/assets/css/count.css">
   <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
@@ -13,15 +13,32 @@
   <input type="text" name="name" value="name">
   <p>[URLを入力](最後の数値は削除した状態で入力)</p>
   <input type="text" name="url" value="url">
+  <p>[医薬品分類]</p>
+  <select class="category" name="category" id="category">
+    <% @categories.each do |category| %>
+    <option value="<%= category.id %>"><%= category.name %></option>
+    <% end %>
+  </select>
   <input type="submit" value="登録">
 </form>
-
+<br>
+<ul>
+  <% @categories.each do |category| %>
+  <li><a href="/category/<%= category.id %>"><%=category.name %></a></li>
+  <% end %>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <p>[登録一覧]</p>
   <% @druginfo.each do |druginfo| %>
-  <p>-----------------------------------------------------</p>
+  <p>----------------------------------------------------------------------------------------</p>
     <label for="name">医薬品名：<%= druginfo.name %></label>
       <br>
-      <label for="url">URL:<%= druginfo.url %></label>
+      <!-- <label for="url">URL:<%= druginfo.url %></label> -->
 
       <form class="" action="/delete/<%= druginfo.id %>" method="post">
         <input type="submit" value="削除">

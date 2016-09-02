@@ -16,13 +16,15 @@ end
 
 get '/' do
   @druginfo = Druginfo.all
+  @categories = Category.all
   erb :index
 end
 
 post '/create' do
   Druginfo.create({
     name: params[:name],
-    url: params[:url]
+    url: params[:url],
+    category_id: params[:category]
   })
   redirect '/'
 end
@@ -31,6 +33,14 @@ post '/delete/:id' do
     Druginfo.find(params[:id]).destroy
 
     redirect '/'
+end
+
+get '/category/:id' do
+  @categories = Category.all
+  @category = Category.find(params[:id])
+  @category_name = @category.name
+  @druginfo = @category.druginfos
+  erb :index
 end
 
 post '/mining/:id' do
@@ -47,14 +57,22 @@ post '/search/:id' do
     parsed_html = []
     l = 0
     @sum_dose = 0
-    page_n = 1
-    while page_number < page_n do
-        # アクセス回数増えすぎると制限かけられそうなので、作る時はページの表示も1までにする。
-        url = @druginfo.url + "#{page_number}"
-        html = open(url).read
-        parsed_html << Nokogiri::HTML.parse(html.toutf8, nil, 'UTF-8')
-        page_number = page_number + 1
-    end
+    page_n = 0
+
+    loop{
+      url = @druginfo.url + "#{page_n}"
+      html = open(url).read
+      parsed_html << Nokogiri::HTML.parse(html.toutf8, nil, 'UTF-8')
+      parsed_html1 = Nokogiri::HTML.parse(html.toutf8, nil, 'UTF-8')
+      parsed_html2 = parsed_html1.css("table" [2]).inner_text
+      if parsed_html2.include?("発現日") then
+        puts "処理開始"
+      else
+        puts "ループ終了"
+        break
+      end
+      page_n = page_n + 1
+    }
 
         i = 0
         # iは有害事象の報告件数

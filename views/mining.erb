@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <title>datemining</title>
+  <title>date-mining</title>
   <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="/assets/css/count.css">
   <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
@@ -23,17 +23,18 @@
     <input type="submit" value="データ抽出">
   </form>
   <p>ーーーーーーーーーーーーーーーーー</p>
+  <span>調査対象副作用：</span><%=@name %><br>
   <span>副作用報告件数：<%= @number_of_report %></span><br>
-<span>総報告件数：<%= @total_report %></span><br>
+<span><%= @druginfo.name %>の報告総数：<%= @total_report %></span><br>
 <span>男女比  男 <%= @men %>  :女 <%= @women %> ：不明　<%= @other %></span>
 <p>_______________________________________________________________________________</p>
-<p>有害事象名：件数：</p>　
+<p>有害事象名：件数（すべて）：</p>　
 <!-- <%= @s_effect_hash %> -->
 <script type="text/javascript">
   document.write(<%= @s_effect_hash %>);
 </script>
 <!--<p>_______________________________________________________________________________</p>-->
-<p>年齢：</p>
+<p>年齢（<%=@name %>）：</p>
 <!-- <%= @age_hash %> -->
 <script type="text/javascript">
   document.write(<%= @age_hash %>);
@@ -41,35 +42,36 @@
 <p>_______________________________________________________________________________</p>
 <!--<p>用量：</p>　<%= @dose_hash %>-->
 <!--<p>_______________________________________________________________________________</p>-->
-<p>報告時期：</p>
+<p>報告時期（<%=@name %>）：</p>
 　<!-- <%= @time_hash %> -->
 <script type="text/javascript">
   document.write(<%= @time_hash %>);
 </script>
 <p>_______________________________________________________________________________</p>
-<span>合計投与日数；サンプル数</span><br>
+<span>合計投与日数；サンプル数（<%=@name %>）</span><br>
 <span>合計；</span><%= @sum_dose %> <span>:<%= @l %></span>
 <p>_______________________________________________________________________________</p>
 <!-- <%= @dosing_period %> -->
+<p>投与期間（<%=@name %>）</p>
 <script type="text/javascript">
   document.write(<%= @dosing_period %>);
 </script>
 <!--<p>副作用発生時期：　<%= %></p>-->
 <p>_______________________________________________________________________________</p>
-<p>身長：</p>
+<p>身長（<%=@name %>）：</p>
 　<!-- <%= @height_hash %> -->
 <script type="text/javascript">
   document.write(<%= @height_hash %>);
 </script>
 <p>_______________________________________________________________________________</p>
-<p>体重：</p>
+<p>体重（<%=@name %>）：</p>
 　<!-- <%= @weight_hash %> -->
 <script type="text/javascript">
   document.write(<%= @weight_hash %>)
 </script>
 <p>_______________________________________________________________________________</p>
 <br>
-<p>転機</p>
+<p>転機（<%=@name %>）</p>
 　<!-- <%= @aftercure_hash %> -->
 <script type="text/javascript">
   document.write(<%= @aftercure_hash %>);
@@ -77,7 +79,7 @@
 <br>
 <p>_______________________________________________________________________________</p>
 <br>
-<p>原発疾患</p>
+<p>原発疾患（<%=@name %>）</p>
 　<!-- <%= @sick_hash %> -->
 <script type="text/javascript">
   document.write(<%= @sick_hash %>);
